@@ -1,3 +1,5 @@
+"use strict";
+
 const readline = require("readline");
 const rl = readline.createInterface({
   input: process.stdin,
@@ -63,7 +65,9 @@ Hàm bạn chọn: `;
       break;
   }
 
-  console.log(`Kết quả: ${result}`);
+  if (result) {
+    console.log(`Kết quả: ${result}`);
+  }
 
   process.exit(0);
 }

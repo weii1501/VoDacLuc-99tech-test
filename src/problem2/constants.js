@@ -1,77 +1,4 @@
-"use strict";
-
-// Hàm tìm tỷ giá hối đoái
-function getExchangeRate(currency) {
-  const entry = list.find((item) => item.currency === currency);
-  return entry ? entry.price : null;
-}
-
-// Hàm chuyển đổi tiền tệ
-function convertCurrency(amount, fromCurrency, toCurrency) {
-  const fromRate = getExchangeRate(fromCurrency);
-  const toRate = getExchangeRate(toCurrency);
-
-  if (fromRate === null || toRate === null) {
-    console.error(
-      "Không tìm thấy tỷ giá hối đoái cho một trong hai loại tiền tệ."
-    );
-    return null;
-  }
-
-  // Chuyển đổi amount từ fromCurrency sang USD, sau đó từ USD sang toCurrency
-  const amountInUSD = amount / fromRate;
-  const convertedAmount = amountInUSD * toRate;
-
-  return convertedAmount;
-}
-
-window.onload = function () {
-  const currencyDOM = document.getElementsByClassName("form__select");
-  const defaultCurrency = list.find((item) => item.currency === "USD");
-
-  const str = list
-    .map((item) => {
-      const selected =
-        item.currency === defaultCurrency.currency ? "selected" : "";
-      return `<option value="${item.currency}" ${selected}>${item.currency}</option>`;
-    })
-    .join("");
-  for (let opt of currencyDOM) {
-    opt.innerHTML = str;
-  }
-};
-
-document.getElementById("form").addEventListener("submit", function (event) {
-  event.preventDefault();
-  const input = document.getElementById("input-amount");
-  const output = document.getElementById("output-amount");
-  const currency = document.getElementsByClassName("form__select");
-
-  const inputObj = {
-    amount: input.value,
-    currency: currency[0].value,
-  };
-
-  const outputObj = {
-    amount: output.value,
-    currency: currency[1].value,
-  };
-
-  const result = convertCurrency(
-    parseFloat(inputObj.amount),
-    inputObj.currency,
-    outputObj.currency
-  );
-
-  output.value = result;
-});
-
 const list = [
-  {
-    currency: "USD",
-    date: "2023-08-29T07:10:30.000Z",
-    price: 1,
-  },
   {
     currency: "BLUR",
     date: "2023-08-29T07:10:40.000Z",
@@ -91,6 +18,11 @@ const list = [
     currency: "BUSD",
     date: "2023-08-29T07:10:40.000Z",
     price: 0.9998782611186441,
+  },
+  {
+    currency: "USD",
+    date: "2023-08-29T07:10:30.000Z",
+    price: 1,
   },
   {
     currency: "ETH",
@@ -248,3 +180,5 @@ const list = [
     price: 0.01651813559322034,
   },
 ];
+
+module.exports = list;

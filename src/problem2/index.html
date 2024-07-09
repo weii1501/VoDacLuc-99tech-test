@@ -11,15 +11,33 @@
 <body>
 
   <!-- You may reorganise the whole HTML, as long as your form achieves the same effect. -->
-  <form onsubmit="return !1">
-    <h5>Swap</h5>
-    <label for="input-amount">Amount to send</label>
-    <input id="input-amount" />
+  <form id="form" class="form" onsubmit="return !1">
+    <!-- <h5 class="form__title">Swap</h5> -->
+    <div class="form__body">
+      <div class="wrapper">
+        <label class="form__lable" for="input-amount">Amount to send</label>
 
-    <label for="output-amount">Amount to receive</label>
-    <input id="output-amount" />
+        <div class="wrapper__row">
+          <input class="form__input" id="input-amount" />
+          <select class="form__select" id="currency" type="number" >
+          </select>
+        </div>
+      </div>
 
-    <button>CONFIRM SWAP</button>
+      <div class="wrapper">
+        <label class="form__lable" for="output-amount">Amount to receive</label>
+
+        <div class="wrapper__row">
+          <input class="form__input" id="output-amount" disabled/>
+          <select class="form__select" id="currency" type="number">
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form__footer">
+      <button class="form__button" type="submit">CONFIRM SWAP</button>
+    </div>
   </form>
   <script src="script.js"></script>
 </body>

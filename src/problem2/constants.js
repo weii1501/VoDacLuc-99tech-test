@@ -181,4 +181,13 @@ const list = [
   },
 ];
 
-module.exports = list;
+const list2 = list.map((item) => {
+  return {
+    currency: item.currency,
+    date: "2023-08-29T07:10:40.000Z",
+    price: item.price,
+    img: `./assets/tokens/${item.currency}.svg`
+  };
+});
+
+console.log(list2);
